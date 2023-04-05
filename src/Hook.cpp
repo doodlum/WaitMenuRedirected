@@ -1,16 +1,6 @@
 #include "Hook.h"
 namespace WaitMenuRedirected
 {
-	void OpenWaitMenuHook::OpenWaitMenu([[maybe_unused]] bool isSleep)
-	{
-		if (auto menuControls = RE::MenuControls::GetSingleton()) {
-			if (menuControls->InBeastForm()) {
-				SleepWaitMenu__OpenSleepWaitMenu(isSleep);
-			}
-		}
-		return;
-	}
-
 	// https://github.com/max-su-2019/CommonLibSSE
 
 	static void TweenMenu__CloseTweenMenu()
@@ -25,6 +15,16 @@ namespace WaitMenuRedirected
 		using func_t = decltype(&SleepWaitMenu__OpenSleepWaitMenu);
 		REL::Relocation<func_t> func{ REL::VariantID(51618, 52490, 0x8EAD70) };
 		return func(isSleep);
+	}
+
+	void OpenWaitMenuHook::OpenWaitMenu(bool isSleep)
+	{
+		if (auto menuControls = RE::MenuControls::GetSingleton()) {
+			if (menuControls->InBeastForm()) {
+				SleepWaitMenu__OpenSleepWaitMenu(isSleep);
+			}
+		}
+		return;
 	}
 
 	EventResult MenuControlsHook::ProcessEvent(RE::MenuControls* a_menuControls, RE::InputEvent* const* a_event, RE::BSTEventSource<RE::InputEvent*>* a_eventSource)
