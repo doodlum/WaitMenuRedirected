@@ -7,10 +7,10 @@ namespace WaitMenuRedirected
 	public:
 		static void Hook()
 		{
-			REL::Relocation<uintptr_t> hook{ REL::ID(51400) };  //1408AA140
+			REL::Relocation<uintptr_t> hook{ REL::VariantID(51400, 52249, 0x8D7030) };  //1408AA140
 			auto& trampoline = SKSE::GetTrampoline();
 			SKSE::AllocTrampoline(1 << 4);
-			_OpenWaitMenu = trampoline.write_call<5>(hook.address() + 0x394, OpenWaitMenu);
+			_OpenWaitMenu = trampoline.write_call<5>(hook.address() + REL::Relocate(0x394, 0x379, 0x2C0), OpenWaitMenu);
 		};
 
 	private:

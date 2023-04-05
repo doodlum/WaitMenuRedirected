@@ -1,14 +1,9 @@
 {
-    "name":  "waitmenuredirected",
-    "version-string":  "1.0.0",
-    "description":  "",
-    "license":  "MIT",
-    "dependencies":  [
-                         "spdlog"
-                     ],
-    "features":  {
-                     "mo2-install":  {
-                                         "description":  "WaitMenuRedirected"
-                                     }
-                 }
+"name": "commonlibsse-plugin",
+  "version-string": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "dependencies": [
+    "commonlibsse-ng"
+  ]
 }
